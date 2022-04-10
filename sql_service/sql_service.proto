@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option go_package = "sloth-grpc/sql_service";
+
+package sql_service;
+
+/*
+    * Void Message
+        * Definition: type for empty messages
+        * Usage: When you can execute a method without parameters
+*/
+
+message Void {}
+
+/*
+    * Input Message
+        * Definition: General type for input messages
+        * query: SQL query itself
+*/
+
+message Input {
+    string query = 1;
+}
+
+/*
+    * Output Message
+        * Definition: General type for output messages
+        * status: Represents the status of the request
+        * result: Represents the response it self in JSON format
+        * error: Error message for debugging
+*/
+
+message Output {
+    string status = 1;
+    string result = 2;
+    string error = 3;
+}
+
+service SQLServices {
+    rpc raw_query(Input) returns (Output) {}; /* Executes any type of SQL Query, without output */
+    rpc insert_query(Input) returns (Output) {}; /* Executes any type of SQL Query, without output */
+    rpc select_query(Input) returns (Output) {}; /* Executes any type of SELECT queries, with a json format [{ column_name: value }] */
+    rpc update_query(Input) returns (Output) {}; /* Executes any type of SQL Query, without output */
+    rpc delete_query(Input) returns (Output) {}; /* Executes any type of SQL Query, without output */
+}

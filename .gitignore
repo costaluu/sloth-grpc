@@ -1,0 +1,5 @@
+.env
+server.exe
+sql_service_pb2_grpc.py
+sql_service_pb2.py
+test.py
